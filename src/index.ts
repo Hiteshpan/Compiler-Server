@@ -6,6 +6,8 @@ import { compilerRouter } from "./routes/compilerRouter";
 import { userRouter } from "./routes/userRouter";
 import cookieParser from "cookie-parser";
 
+const port = process.env.PORT || 4000;
+
 const app = express();
 config();
 
@@ -23,6 +25,6 @@ app.use("/user", userRouter);
 
 dbConnect();
 
-app.listen(3000, () => {
-    console.log("http://localhost:3000");
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`)
 })
