@@ -16,7 +16,7 @@ app.use(cookieParser());
 
 app.use(cors({
     credentials: true,
-    origin: ["http://localhost:5173", process.env.CLIENT_URL!],
+    origin: process.env.CLIENT_URL!,
 }));
 // console.log("is your client url:", process.env.CLIENT_URL)
 
