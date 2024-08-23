@@ -9,7 +9,6 @@ config();
 
 const app = express();
 // const port = parseInt(process.env.PORT || "3000", 10);
-const port: number = parseInt(process.env.PORT || "3000", 10); 
 
 app.use(express.json());
 app.use(cookieParser());
@@ -28,6 +27,8 @@ dbConnect();
 // app.listen(port, '0.0.0.0', () => {
 //     console.log(`App listening on port ${port}`)
 // })
+
+const port: number = parseInt(process.env.PORT_URL || "3000", 10); 
 
 app.listen(port, '0.0.0.0',() => {
     console.log(`Example app listening on port ${port}`)
