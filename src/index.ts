@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 app.use(cors({
     credentials: true,
-    origin: ["http://localhost:5173", process.env.CLIENT_URL!],
+    origin: process.env.CLIENT_URL!,
 }));
 // console.log("is your client url:", process.env.CLIENT_URL)
 
@@ -23,6 +23,6 @@ app.use("/user", userRouter);
 
 dbConnect();
 
-app.listen(3000, () => {
-    console.log("http://localhost:3000");
+app.listen(4000, () => {
+    console.log("http://localhost:4000");
 })
