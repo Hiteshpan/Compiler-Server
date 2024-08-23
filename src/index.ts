@@ -5,32 +5,30 @@ import { dbConnect } from "./lib/dbConnect";
 import { compilerRouter } from "./routes/compilerRouter";
 import { userRouter } from "./routes/userRouter";
 import cookieParser from "cookie-parser";
-
-// Load environment variables
 config();
 
 const app = express();
+// const port = parseInt(process.env.PORT || "3000", 10);
 const port: number = parseInt(process.env.PORT || "3000", 10); 
 
-// Middleware setup
 app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin: [process.env.CLIENT_URL], // Use the CLIENT_URL from environment
+        origin: ["http://localhost:5173", process.env.CLIENT_URL!],
         methods: ['POST', 'GET'],
         credentials: true,
     })
 );
 
-// Route handlers
 app.use("/compiler", compilerRouter);
 app.use("/user", userRouter);
 
-// Connect to the database
 dbConnect();
+// app.listen(port, '0.0.0.0', () => {
+//     console.log(`App listening on port ${port}`)
+// })
 
-// Start the server
 app.listen(port, '0.0.0.0',() => {
     console.log(`Example app listening on port ${port}`)
   })
