@@ -6,7 +6,7 @@ import { compilerRouter } from "./routes/compilerRouter";
 import { userRouter } from "./routes/userRouter";
 import cookieParser from "cookie-parser";
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 config();
