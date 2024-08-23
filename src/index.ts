@@ -23,6 +23,6 @@ app.use("/user", userRouter);
 
 dbConnect();
 
-app.listen(5000, () => {
-    console.log("http://localhost:5000");
+app.listen(3001, () => {
+    console.log("http://localhost:3001");
 })
