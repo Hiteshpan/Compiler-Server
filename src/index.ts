@@ -10,7 +10,7 @@ import cookieParser from "cookie-parser";
 config();
 
 const app = express();
-const port = parseInt(process.env.PORT || "3000", 10);
+const port: number = parseInt(process.env.PORT || "3000", 10); 
 
 // Middleware setup
 app.use(express.json());
@@ -31,6 +31,6 @@ app.use("/user", userRouter);
 dbConnect();
 
 // Start the server
-app.listen(port, '0.0.0.0', () => {
-    console.log(`App listening on port ${port}`);
-});
+app.listen(port, '0.0.0.0',() => {
+    console.log(`Example app listening on port ${port}`)
+  })
