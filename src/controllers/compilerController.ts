@@ -5,10 +5,8 @@ import { User } from "../models/User";
 import { AuthRequest } from "../middlewares/verifyToken";
 
 export const saveCode = async (req: AuthRequest, res: Response) => {
-    // const fullCode: fullCodeType = req.body;
     const { fullCode, title }: { fullCode: fullCodeType; title: string } =
         req.body;
-
     let ownerName = "Anonymous";
     let user = undefined;
     let ownerInfo = undefined;
@@ -25,7 +23,7 @@ export const saveCode = async (req: AuthRequest, res: Response) => {
     }
 
     if (!fullCode.html && !fullCode.css && !fullCode.javascript) {
-        return res.status(400).send({ message: "Code can't be Blank!" })
+        return res.status(400).send({ message: "Code cannot be blank!" });
     }
     try {
         const newCode = await Code.create({
@@ -38,11 +36,10 @@ export const saveCode = async (req: AuthRequest, res: Response) => {
             user.savedCodes.push(newCode._id);
             await user.save();
         }
-
         return res.status(201).send({ url: newCode._id, status: "saved!" });
     } catch (error) {
         return res.status(500).send({ message: "Error saving code", error });
-    };
+    }
 };
 
 
@@ -59,7 +56,7 @@ export const loadCode = async (req: AuthRequest, res: Response) => {
         if (user?.username === existingCode.ownerName) {
             isOwner = true;
         }
-        return res.status(200).send({ fullCode: existingCode.fullCode, isOwner }); 
+        return res.status(200).send({ fullCode: existingCode.fullCode, isOwner });
     } catch (error) {
         return res.status(500).send({ message: "Error loading code", error });
     }
