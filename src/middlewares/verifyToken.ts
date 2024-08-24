@@ -12,7 +12,7 @@ export const verifyToken = async (
 ) => {
   const token = req.cookies.token || (req.headers.authorization && req.headers.authorization.startsWith('Bearer ') ? req.headers.authorization.split(' ')[1] : null);
 
-  console.log('Token:', token);
+  console.log('Received Token:', token); 
 
   if (!token) {
     return res.status(401).send({ message: `Token: ${token}...No token provided. Access denied.` });
