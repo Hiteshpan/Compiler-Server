@@ -40,7 +40,7 @@ export const signup = async (req: Request, res: Response) => {
             path: "/",
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
             httpOnly: true,
-            sameSite: "lax",
+            sameSite: "strict",
         });
 
         return res
@@ -95,7 +95,7 @@ export const login = async (req: Request, res: Response) => {
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: "lax",
+            sameSite: "strict",
         });
         console.log(jwtToken)
 

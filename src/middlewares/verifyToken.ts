@@ -10,12 +10,12 @@ export const verifyToken = async (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
+  const token = req.cookies.token || (req.headers.authorization && req.headers.authorization.startsWith('Bearer ') ? req.headers.authorization.split(' ')[1] : null);
 
   console.log('Token:', token);
 
   if (!token) {
-    return res.status(401).send({ message: `"Token:"${token}...No token provided. Access denied.` });
+    return res.status(401).send({ message: `Token: ${token}...No token provided. Access denied.` });
   }
   jwt.verify(
     token,
@@ -23,7 +23,7 @@ export const verifyToken = async (
     (err: JsonWebTokenError | null, data: any) => {
       if (err) {
         console.error('Token verification error:', err);
-        return res.status(401).send({ message: `"Token:"${token}...Invalid token. Access denied.` });
+        return res.status(401).send({ message: `Token: ${token}...Invalid token. Access denied.` });
       }
 
       req._id = data._id;
