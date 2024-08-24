@@ -37,7 +37,7 @@ const signup = async (req, res) => {
             path: "/",
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
             httpOnly: true,
-            sameSite: "strict",
+            sameSite: "lax",
         });
         return res
             .status(201).send({
@@ -80,7 +80,7 @@ const login = async (req, res) => {
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: "strict",
+            sameSite: "lax",
         });
         console.log(jwtToken);
         return res

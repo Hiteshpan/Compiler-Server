@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const verifyToken = async (req, res, next) => {
-    const token = req.cookies.token || (req.headers.authorization && req.headers.authorization.startsWith('Bearer ') ? req.headers.authorization.split(' ')[1] : null);
-    console.log('Token:', token);
+    const token = req.cookies.token;
+    console.log('Received Token:', token);
     if (!token) {
         return res.status(401).send({ message: `Token: ${token}...No token provided. Access denied.` });
     }
