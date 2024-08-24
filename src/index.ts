@@ -5,6 +5,7 @@ import { dbConnect } from "./lib/dbConnect";
 import { compilerRouter } from "./routes/compilerRouter";
 import { userRouter } from "./routes/userRouter";
 import cookieParser from "cookie-parser";
+
 config();
 
 const app = express();
@@ -12,7 +13,6 @@ const port = parseInt(process.env.PORT || "3000", 10);
 
 app.use(express.json());
 app.use(cookieParser());
-
 
 app.use(cors({
     origin: [process.env.CLIENT_URL! || 'http://localhost:5173'],  // Use environment variable for origin
