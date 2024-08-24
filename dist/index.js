@@ -16,13 +16,13 @@ const port = parseInt(process.env.PORT || "3000", 10);
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:5173"], // Allow the frontend origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these HTTP methods
-    credentials: true, // Allow credentials (cookies, etc.)
+    origin: [process.env.CLIENT_URL || 'http://localhost:5173'], // Use environment variable for origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
 }));
 // Explicitly handling preflight requests
 app.options('*', (0, cors_1.default)({
-    origin: ["http://localhost:5173"],
+    origin: [process.env.CLIENT_URL || 'http://localhost:5173'], // Use environment variable for origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
