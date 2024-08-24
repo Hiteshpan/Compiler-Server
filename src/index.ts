@@ -14,14 +14,14 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: [process.env.CLIENT_URL || 'http://localhost:5173'],  // Use environment variable for origin
+    origin: [process.env.CLIENT_URL! || 'http://localhost:5173'],  // Use environment variable for origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
 
 // Explicitly handling preflight requests
 app.options('*', cors({
-    origin: [process.env.CLIENT_URL || 'http://localhost:5173'],  // Use environment variable for origin
+    origin: [process.env.CLIENT_URL! || 'http://localhost:5173'],  // Use environment variable for origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
