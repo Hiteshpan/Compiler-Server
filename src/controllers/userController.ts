@@ -30,9 +30,10 @@ export const signup = async (req: Request, res: Response) => {
                 _id: user._id,
                 email: user.email,
             },
-            process.env.JWT_KEY!, {
-            expiresIn: "1d",
-        }
+            process.env.JWT_KEY!,
+            {
+                expiresIn: "1d",
+            }
         );
 
         res.cookie("token", jwtToken, {

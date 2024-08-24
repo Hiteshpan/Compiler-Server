@@ -4,7 +4,6 @@ exports.getAllCodes = exports.editCode = exports.deleteCode = exports.getMyCodes
 const Code_1 = require("../models/Code");
 const User_1 = require("../models/User");
 const saveCode = async (req, res) => {
-    // const fullCode: fullCodeType = req.body;
     const { fullCode, title } = req.body;
     let ownerName = "Anonymous";
     let user = undefined;
@@ -20,7 +19,7 @@ const saveCode = async (req, res) => {
         isAuthenticated = true;
     }
     if (!fullCode.html && !fullCode.css && !fullCode.javascript) {
-        return res.status(400).send({ message: "Code can't be Blank!" });
+        return res.status(400).send({ message: "Code cannot be blank!" });
     }
     try {
         const newCode = await Code_1.Code.create({
@@ -38,7 +37,6 @@ const saveCode = async (req, res) => {
     catch (error) {
         return res.status(500).send({ message: "Error saving code", error });
     }
-    ;
 };
 exports.saveCode = saveCode;
 const loadCode = async (req, res) => {
