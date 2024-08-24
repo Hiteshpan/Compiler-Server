@@ -97,7 +97,6 @@ export const login = async (req: Request, res: Response) => {
             secure: process.env.NODE_ENV === 'production',
             sameSite: "lax",
         });
-        console.log(jwtToken)
 
         return res
             .status(200)
