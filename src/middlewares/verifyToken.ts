@@ -11,17 +11,21 @@ export const verifyToken = async (
   next: NextFunction
 ) => {
   const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
-  console.log(token)
+
+  console.log('Token:', token);
+
   if (!token) {
-    return res.status(401).send({ message: "You are unauthorized." });
+    return res.status(401).send({ message: `"Token:"${token}...No token provided. Access denied.` });
   }
   jwt.verify(
     token,
     process.env.JWT_KEY!,
     (err: JsonWebTokenError | null, data: any) => {
       if (err) {
-        return res.status(401).send({ message: "You are unauthorized." });
+        console.error('Token verification error:', err);
+        return res.status(401).send({ message: `"Token:"${token}...Invalid token. Access denied.` });
       }
+
       req._id = data._id;
       next();
     }
