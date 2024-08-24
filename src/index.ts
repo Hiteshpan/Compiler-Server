@@ -13,20 +13,28 @@ const port = parseInt(process.env.PORT || "3000", 10);
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(
-    cors({
-        origin: [process.env.CLIENT_URL!, "http://localhost:5174"],
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        credentials: true,
-    })
-);
+app.use(cors({
+    origin: ["http://localhost:5173"],  // Allow the frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allow these HTTP methods
+    credentials: true,  // Allow credentials (cookies, etc.)
+}));
 
 // Explicitly handling preflight requests
 app.options('*', cors({
-    origin: [process.env.CLIENT_URL!],
+    origin: ["http://localhost:5173"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
+
+app.options('*', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin as string);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.sendStatus(204);  // No Content
+});
+
+
 
 app.use((req, res, next) => {
     res.on('finish', () => {
