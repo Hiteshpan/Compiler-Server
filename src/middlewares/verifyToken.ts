@@ -10,7 +10,7 @@ export const verifyToken = async (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies.token || (req.headers.authorization && req.headers.authorization.startsWith('Bearer ') ? req.headers.authorization.split(' ')[1] : null);
+  const token = req.cookies.token ;
 
   console.log('Received Token:', token); 
 
